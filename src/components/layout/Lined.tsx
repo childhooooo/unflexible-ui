@@ -23,9 +23,10 @@ interface Props {
   s?: string;
   xs?: string;
   gap?: string;
+  children?: React.ReactNode;
 }
 
-const Lined = ({ xl, l, m, s, xs, gap }: Props) => {
+const Lined = ({ xl, l, m, s, xs, gap, children}: Props) => {
   return (
     <Component
       xl={xl || '100%'}
@@ -34,7 +35,9 @@ const Lined = ({ xl, l, m, s, xs, gap }: Props) => {
       s={s || '100%'}
       xs={xs || '100%'}
       gap={gap || 'normal'}
-    ></Component>
+    >
+      {children}
+    </Component>
   );
 };
 
