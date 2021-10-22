@@ -8,12 +8,12 @@ const defaultGaps: { [key: string]: string } = {
   gapless: '0rem',
 };
 
-const defaultGapRates: { [key: string]: string } = {
-  xl: '100%',
-  l: '100%',
-  m: '50%',
-  s: '50%',
-  xs: '50%',
+const defaultGapRates: { [key: string]: number } = {
+  xl: 1,
+  l: 1,
+  m: .5,
+  s: .5,
+  xs: .5,
 };
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Lined = ({ xl, l, m, s, xs, gap, children}: Props) => {
+const Lined = ({ xl, l, m, s, xs, gap, children }: Props) => {
   return (
     <Component
       xl={xl || '100%'}
@@ -34,7 +34,7 @@ const Lined = ({ xl, l, m, s, xs, gap, children}: Props) => {
       m={m || '100%'}
       s={s || '100%'}
       xs={xs || '100%'}
-      gap={gap || 'normal'}
+      gap={gap || 'gapless'}
     >
       {children}
     </Component>
@@ -60,7 +60,7 @@ const Component = styled.div<ComponentProps>`
       defaultGapRates.xl
     }))`};
 
-  @media only screen and (max-width: ${screen.l}) {
+  @media only screen and (max-width: ${screen.l}px) {
     width: ${(props) => props.l};
     padding: ${(props) =>
       `calc(var(--stacked-gap-${props.gap}, ${
@@ -68,7 +68,7 @@ const Component = styled.div<ComponentProps>`
       }) * var(--stacked-gap-rate-l, ${defaultGapRates.l}))`};
   }
 
-  @media only screen and (max-width: ${screen.m}) {
+  @media only screen and (max-width: ${screen.m}px) {
     width: ${(props) => props.m};
     padding: ${(props) =>
       `calc(var(--stacked-gap-${props.gap}, ${
@@ -76,7 +76,7 @@ const Component = styled.div<ComponentProps>`
       }) * var(--stacked-gap-rate-m, ${defaultGapRates.m}))`};
   }
 
-  @media only screen and (max-width: ${screen.s}) {
+  @media only screen and (max-width: ${screen.s}px) {
     width: ${(props) => props.s};
     padding: ${(props) =>
       `calc(var(--stacked-gap-${props.gap}, ${
@@ -84,7 +84,7 @@ const Component = styled.div<ComponentProps>`
       }) * var(--stacked-gap-rate-s, ${defaultGapRates.s}))`};
   }
 
-  @media only screen and (max-width: ${screen.xs}) {
+  @media only screen and (max-width: ${screen.xs}px) {
     width: ${(props) => props.xs};
     padding: ${(props) =>
       `calc(var(--stacked-gap-${props.gap}, ${
