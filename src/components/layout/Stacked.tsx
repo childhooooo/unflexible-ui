@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Wrap from './Wrap';
-import { screen } from 'config';
+import { screen } from 'lib/config';
 
 const defaultPaddings: { [key: string]: string } = {
   wide: '180px',
@@ -22,6 +22,8 @@ const defaultPaddingRates: { [key: string]: number } = {
 const defaultGaps: { [key: string]: string } = {
   wide: '3rem',
   normal: '1.5rem',
+  narrow: '1rem',
+  thin: '.5rem',
   gapless: '0rem',
 };
 
@@ -30,7 +32,7 @@ const defaultGapRates: { [key: string]: number } = {
   l: 1,
   m: .5,
   s: .5,
-  xs: .5,
+  xs: .25,
 };
 
 interface Props {

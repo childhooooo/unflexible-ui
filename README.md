@@ -67,3 +67,27 @@ npm install unflexible-ui
   --lined-gap-rate-xs: .5;
 }
 ```
+
+#### PlainText
+
+```css
+:root {
+  --plain-size: 1rem;
+  --plain-margin: 1rem 0;
+  --plain-h1-size: 2.25rem;
+  --plain-h2-size: 2rem;
+  --plain-h3-size: 1.5rem;
+  --plain-h4-size: 1.25rem;
+  --plain-h5-size: 1rem;
+  --plain-h1-weight: 700;
+  --plain-h2-weight: 700;
+  --plain-h3-weight: 700;
+  --plain-h4-weight: 700;
+  --plain-h5-weight: 700;
+  --plain-h1-margin: 2rem 0 1rem 0;
+  --plain-h2-margin: 2rem 0 1rem 0;
+  --plain-h3-margin: 2rem 0 1rem 0;
+  --plain-h4-margin: 2rem 0 1rem 0;
+  --plain-h5-margin: 2rem 0 1rem 0;
+}
+```

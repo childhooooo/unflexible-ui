@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { screen } from 'config';
+import { screen } from 'lib/config';
 
 const defaultSizes = {
   xl: '1240px',

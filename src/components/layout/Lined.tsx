@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { screen } from 'config';
+import { screen } from 'lib/config';
 
 const defaultGaps: { [key: string]: string } = {
   wide: '3rem',
   normal: '1.5rem',
+  narrow: '1rem',
+  thin: '.5rem',
   gapless: '0rem',
 };
 
@@ -13,7 +15,7 @@ const defaultGapRates: { [key: string]: number } = {
   l: 1,
   m: .5,
   s: .5,
-  xs: .5,
+  xs: .25,
 };
 
 interface Props {
@@ -23,18 +25,20 @@ interface Props {
   s?: string;
   xs?: string;
   gap?: string;
+  maxWidth?: string;
   children?: React.ReactNode;
 }
 
-const Lined = ({ xl, l, m, s, xs, gap, children }: Props) => {
+const Lined = ({ xl, l, m, s, xs, gap, maxWidth, children }: Props) => {
   return (
     <Component
-      xl={xl || '100%'}
-      l={l || '100%'}
-      m={m || '100%'}
-      s={s || '100%'}
-      xs={xs || '100%'}
+      xl={xl || 'inherit'}
+      l={l || 'inherit'}
+      m={m || 'inherit'}
+      s={s || 'inherit'}
+      xs={xs || 'inherit'}
       gap={gap || 'gapless'}
+      maxWidth={maxWidth || '100%'}
     >
       {children}
     </Component>
@@ -48,17 +52,24 @@ interface ComponentProps {
   s: string;
   xs: string;
   gap: string;
+  maxWidth: string;
 }
 
 const Component = styled.div<ComponentProps>`
+position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: ${(props) => props.xl};
+  max-width: ${(props) => props.maxWidth};
   padding: ${(props) =>
     `calc(var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-xl, ${
       defaultGapRates.xl
     }))`};
+
+> * {
+  height: 100%;
+}
 
   @media only screen and (max-width: ${screen.l}px) {
     width: ${(props) => props.l};
