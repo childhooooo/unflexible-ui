@@ -3,7 +3,6 @@
     "outDir": "./build/",
     "target": "es5",
     "declaration": true,
-    "declarationMap": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
