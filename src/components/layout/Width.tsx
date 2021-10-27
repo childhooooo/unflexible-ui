@@ -3,24 +3,24 @@ import styled from 'styled-components';
 import { screen } from 'lib/config';
 
 interface Props {
-  widthXL: string;
+  widthXL?: string;
   widthL?: string;
   widthM?: string;
   widthS?: string;
   widthXS?: string;
-  maxWidth: string;
+  maxWidth?: string;
   children?: React.ReactNode;
 }
 
 const Width = ({widthXL, widthL, widthM, widthS, widthXS, maxWidth, children}: Props) => {
   return (
   <Component
-    widthXL={widthXL}
+    widthXL={widthXL || '100%'}
     widthL={widthL}
     widthM={widthM}
     widthS={widthS}
     widthXS={widthXS}
-    maxWidth={maxWidth}
+    maxWidth={maxWidth || '100%'}
   >
     {children}
   </Component>
