@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { screen, font, color as configColor } from 'lib/config';
 
-interface Props {
+export interface Props {
   text?: string;
   size?: string;
   color?: string;

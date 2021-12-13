@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { screen } from 'lib/config';
 
-interface Props {
+export interface Props {
   widthXL?: string;
   widthL?: string;
   widthM?: string;
@@ -12,7 +12,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Width = ({widthXL, widthL, widthM, widthS, widthXS, maxWidth, children}: Props) => {
+const Block = ({widthXL, widthL, widthM, widthS, widthXS, maxWidth, children}: Props) => {
   return (
   <Component
     widthXL={widthXL || '100%'}
@@ -66,4 +66,4 @@ ${props => props.widthXL && `
 `}
 `
 
-export default Width;
+export default Block;

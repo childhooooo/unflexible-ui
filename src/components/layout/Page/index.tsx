@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 
-interface Props {
+export interface Props {
   title: string;
   description: string;
   path: string;
@@ -11,6 +11,7 @@ interface Props {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   fixHeader?: boolean;
+  color?: string;// 追加
   children?: React.ReactNode;
 }
 
@@ -20,7 +21,7 @@ const Page = ({title, description, path, ogType, ogImage, header, footer, fixHea
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITEURL}/>
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITEURL}/${path}`}/>
         <meta property="og:title" content={title}/>
         <meta property="og:type" content={ogType || 'article'}/>
         <meta property="og:description" content={description}/>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { screen } from 'lib/config';
 
-interface Props {
+export interface Props {
   name: string;
   src: string;
   srcSet?: string;

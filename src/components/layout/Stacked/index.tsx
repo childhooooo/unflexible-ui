@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Wrap from './Wrap';
+import Wrap from '../Wrap';
 import { screen } from 'lib/config';
 
 const defaultPaddings: { [key: string]: string } = {
   wide: '180px',
-  normal: '120px',
+  normal: '12rpx',
   narrow: '60px',
   thin: '30px',
   gapless: '0px',
@@ -35,7 +35,7 @@ const defaultGapRates: { [key: string]: number } = {
   xs: .25,
 };
 
-interface Props {
+export interface Props {
   size?: string;
   padding?: string;
   color?: string;
