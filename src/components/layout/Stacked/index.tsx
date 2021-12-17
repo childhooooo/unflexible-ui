@@ -8,15 +8,14 @@ const defaultPaddings: { [key: string]: string } = {
   normal: '12rpx',
   narrow: '60px',
   thin: '30px',
-  gapless: '0px',
 };
 
 const defaultPaddingRates: { [key: string]: number } = {
   xl: 1,
   l: 1,
-  m: .5,
-  s: .5,
-  xs: .5,
+  m: 0.5,
+  s: 0.5,
+  xs: 0.5,
 };
 
 const defaultGaps: { [key: string]: string } = {
@@ -24,106 +23,75 @@ const defaultGaps: { [key: string]: string } = {
   normal: '1.5rem',
   narrow: '1rem',
   thin: '.5rem',
-  gapless: '0rem',
 };
 
 const defaultGapRates: { [key: string]: number } = {
   xl: 1,
   l: 1,
-  m: .5,
-  s: .5,
-  xs: .25,
+  m: 0.5,
+  s: 0.5,
+  xs: 0.25,
 };
 
 export interface Props {
-  size?: string;
-  padding?: string;
+  paddingSize?: string;
+  paddingPos?: string;
   color?: string;
+  height?: string;
   gradient?: string;
   zIndex?: number;
-  align?: string;
-  justify?: string;
-  gap?: string;
-  imageXL?: string;
-  imageL?: string;
-  imageM?: string;
-  imageS?: string;
-  imageXS?: string;
+  imageSrc?: any;
+  imageSrcSet?: string;
   imageSize?: string;
-  imagePosX?: string;
-  imagePosY?: string;
-  fullHeight?: boolean;
+  imagePos?: string;
   wrap?: boolean;
   children?: React.ReactNode;
 }
 
 const Stacked = ({
-  size,
-  padding,
+  paddingSize,
+  paddingPos,
   color,
+  height,
   gradient,
   zIndex,
-  align,
-  justify,
-  gap,
-  imageXL,
-  imageL,
-  imageM,
-  imageS,
-  imageXS,
+  imageSrc,
+  imageSrcSet,
   imageSize,
-  imagePosX,
-  imagePosY,
-  fullHeight,
+  imagePos,
   wrap,
   children,
 }: Props) => {
   return (
     <Component
-      padding={padding || 'both'}
-      size={size || 'normal'}
+      paddingPos={paddingPos || 'both'}
+      paddingSize={paddingSize || 'normal'}
       color={color || 'transparent'}
       gradient={gradient}
       zIndex={zIndex || 1}
-      imageXL={imageXL}
-      imageL={imageL}
-      imageM={imageM}
-      imageS={imageS}
-      imageXS={imageXS}
-      imageSize={imageSize || 'cover'}
-      imagePosX={imagePosX || '50%'}
-      imagePosY={imagePosY || '50%'}
-      fullHeight={fullHeight || false}
+      height={height || 'auto'}
     >
-      {wrap
-        ? <Wrap>
-          <Flex align={align || 'stretch'} justify={justify || 'normal'} gap={gap || 'gapless'}>
-            {children}
-          </Flex>
-        </Wrap>
-        : <Flex align={align || 'stretch'} justify={justify || 'normal'} gap={gap || 'gapless'}>
-          {children}
-        </Flex>
-      }
+      {imageSrc && (
+        <Background
+          src={imageSrc}
+          srcSet={imageSrcSet || undefined}
+          alt="背景"
+          imageSize={imageSize || 'cover'}
+          imagePos={imagePos || '50% 50%'}
+        />
+      )}
+      {wrap ? <Wrap>{children}</Wrap> : <NoWrap>{children}</NoWrap>}
     </Component>
   );
 };
 
 interface ComponentProps {
-  size: string;
-  padding: string;
+  paddingSize: string;
+  paddingPos: string;
   color: string;
+  height: string;
   gradient?: string;
   zIndex: number;
-  imageXL?: string;
-  imageL?: string;
-  imageM?: string;
-  imageS?: string;
-  imageXS?: string;
-  imageSize: string;
-  imagePosX: string;
-  imagePosY: string;
-  fullHeight: boolean;
 }
 
 const Component = styled.div<ComponentProps>`
@@ -131,132 +99,89 @@ const Component = styled.div<ComponentProps>`
   z-index: ${(props) => props.zIndex};
 
   display: flex;
-  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
   width: 100%;
-  height: ${(props) => (props.fullHeight ? '100vh' : 'auto')};
+  height: ${(props) => props.height};
 
   padding: ${(props) =>
-      `calc(var(--stacked-padding-${props.size}, ${
-        defaultPaddings[props.size]
-      }) * var(--stacked-rate-l, ${defaultPaddingRates.xl}))`}
+      `calc(var(--stacked-padding-${props.paddingSize}, ${
+        defaultPaddings[props.paddingSize]
+      }) * var(--stacked-rate-xl, ${defaultPaddingRates.xl}))`}
     0;
   ${(props) => {
-    switch (props.padding) {
+    switch (props.paddingPos) {
       case 'top':
         return 'padding-bottom: 0 !important;';
       case 'bottom':
         return 'padding-top: 0 !important;';
+      case 'none':
+        return 'padding: 0 !important;';
       default:
         return '';
     }
   }}
 
   background-color: ${(props) => props.color};
-${props => props.gradient ? `background: linear-gradient(${props.gradient});` : ''}
-${props => props.imageXL ? `background-image: url(${props.imageXL});` : ''}
-  background-size: ${props => props.imageSize};
-  background-position: ${(props) => props.imagePosX} ${(props) => props.imagePosY};
+  ${(props) => (props.gradient ? `background: linear-gradient(${props.gradient});` : '')}
+
+  > * {
+    display: block;
+    z-index: 2;
+  }
 
   @media only screen and (max-width: ${screen.l}px) {
-    ${props => props.imageL ? `background-image: url(${props.imageL});` : ''}
     padding: ${(props) =>
-        `calc(var(--stacked-padding-${props.size}, ${
-          defaultPaddings[props.size]
+        `calc(var(--stacked-padding-${props.paddingSize}, ${
+          defaultPaddings[props.paddingSize]
         }) * var(--stacked-padding-rate-l, ${defaultPaddingRates.l}))`}
       0;
   }
 
   @media only screen and (max-width: ${screen.m}px) {
-    ${props => props.imageM ? `background-image: url(${props.imageM});` : ''}
     padding: ${(props) =>
-        `calc(var(--stacked-padding-${props.size}, ${
-          defaultPaddings[props.size]
+        `calc(var(--stacked-padding-${props.paddingSize}, ${
+          defaultPaddings[props.paddingSize]
         }) * var(--stacked-padding-rate-m, ${defaultPaddingRates.m}))`}
       0;
   }
 
   @media only screen and (max-width: ${screen.s}px) {
-    ${props => props.imageS ? `background-image: url(${props.imageS});` : ''}
     padding: ${(props) =>
-        `calc(var(--stacked-padding-${props.size}, ${
-          defaultPaddings[props.size]
+        `calc(var(--stacked-padding-${props.paddingSize}, ${
+          defaultPaddings[props.paddingSize]
         }) * var(--stacked-padding-rate-s, ${defaultPaddingRates.s}))`}
       0;
   }
 
   @media only screen and (max-width: ${screen.xs}px) {
-    ${props => props.imageXS ? `background-image: url(${props.imageXS});` : ''}
     padding: ${(props) =>
-        `calc(var(--stacked-padding-${props.size}, ${
-          defaultPaddings[props.size]
+        `calc(var(--stacked-padding-${props.paddingSize}, ${
+          defaultPaddings[props.paddingSize]
         }) * var(--stacked-padding-rate-xs, ${defaultPaddingRates.xs}))`}
       0;
   }
 `;
 
-interface FlexProps {
-  align: string;
-  justify: string;
-  gap: string;
+interface BackgroundProps {
+  imageSize: string;
+  imagePos: string;
 }
 
-const Flex = styled.div<FlexProps>`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: ${(props) => props.align};
-  justify-content: ${(props) => props.justify};
-  width: ${(props) =>
-    `calc((var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-xl, ${
-      defaultGapRates.xl
-    }) * 2) + 100%)`};
-  margin: ${(props) =>
-    `calc(var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-xl, ${
-      defaultGapRates.xl
-    }) * -1)`};
+const NoWrap = styled.div`
+  width: 100%;
+`;
 
-  @media only screen and (max-width: ${screen.l}px) {
-    width: ${(props) =>
-      `calc((var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-l, ${
-        defaultGapRates.l
-      }) * 2) + 100%)`};
-    margin: ${(props) =>
-      `calc(var(--stacked-gap-${props.gap}, ${
-        defaultGaps[props.gap]
-      }) * var(--stacked-gap-rate-l, ${defaultGapRates.l}) * -1)`};
-  }
-
-  @media only screen and (max-width: ${screen.m}px) {
-    width: ${(props) =>
-      `calc((var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-m, ${
-        defaultGapRates.m
-      }) * 2) + 100%)`};
-    margin: ${(props) =>
-      `calc(var(--stacked-gap-${props.gap}, ${
-        defaultGaps[props.gap]
-      }) * var(--stacked-gap-rate-m, ${defaultGapRates.m}) * -1)`};
-  }
-
-  @media only screen and (max-width: ${screen.s}px) {
-    width: ${(props) =>
-      `calc((var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-s, ${
-        defaultGapRates.s
-      }) * 2) + 100%)`};
-    margin: ${(props) =>
-      `calc(var(--stacked-gap-${props.gap}, ${
-        defaultGaps[props.gap]
-      }) * var(--stacked-gap-rate-s, ${defaultGapRates.s}) * -1)`};
-  }
-
-  @media only screen and (max-width: ${screen.xs}px) {
-    width: ${(props) =>
-      `calc((var(--stacked-gap-${props.gap}, ${defaultGaps[props.gap]}) * var(--stacked-gap-rate-xs, ${
-        defaultGapRates.xs
-      }) * 2) + 100%)`};
-    margin: ${(props) =>
-      `calc(var(--stacked-gap-${props.gap}, ${
-        defaultGaps[props.gap]
-      }) * var(--stacked-gap-rate-xs, ${defaultGapRates.xs}) * -1)`};
-  }
+const Background = styled.img<BackgroundProps>`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: ${(props) => props.imageSize};
+  object-position: ${(props) => props.imagePos};
 `;
 
 export default Stacked;

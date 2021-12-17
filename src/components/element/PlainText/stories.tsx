@@ -5,10 +5,14 @@ import UnflexibleProvider from '../../UnflexibleProvider';
 
 export default {
   title: 'PlainText',
-  component: PlainText
+  component: PlainText,
 } as Meta;
 
-const Template: Story<Props> = (args) => <UnflexibleProvider><PlainText {...args} /></UnflexibleProvider>;
+const Template: Story<Props> = (args) => (
+  <UnflexibleProvider>
+    <PlainText {...args} />
+  </UnflexibleProvider>
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -28,5 +32,5 @@ Primary.args = {
         <li>リスト</li>
       </ul>
     </>
-  )
+  ),
 };

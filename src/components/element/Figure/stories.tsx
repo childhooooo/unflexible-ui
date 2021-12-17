@@ -5,7 +5,7 @@ import UnflexibleProvider from '../../UnflexibleProvider';
 
 export default {
   title: 'Figure',
-  component: Figure
+  component: Figure,
 } as Meta;
 
 const Template: Story<Props> = (args) => {
@@ -14,8 +14,7 @@ const Template: Story<Props> = (args) => {
       <Figure {...args} />
     </UnflexibleProvider>
   );
-}
+};
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

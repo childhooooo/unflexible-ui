@@ -1,17 +1,17 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import Block, { Props } from './index';
+import Columns, { Props } from './index';
 import UnflexibleProvider from '../../UnflexibleProvider';
 
 export default {
-  title: 'Block',
-  component: Block,
+  title: 'Columns',
+  component: Columns,
 } as Meta;
 
 const Template: Story<Props> = (args) => {
   return (
     <UnflexibleProvider>
-      <Block {...args} />
+      <Columns {...args} />
     </UnflexibleProvider>
   );
 };

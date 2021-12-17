@@ -3,67 +3,120 @@ import styled from 'styled-components';
 import { screen } from 'lib/config';
 
 export interface Props {
+  width?: string;
   widthXL?: string;
   widthL?: string;
   widthM?: string;
   widthS?: string;
   widthXS?: string;
   maxWidth?: string;
+  height?: string;
+  fixRatio?: boolean;
   children?: React.ReactNode;
 }
 
-const Block = ({widthXL, widthL, widthM, widthS, widthXS, maxWidth, children}: Props) => {
+const Block = ({
+  width,
+  widthXL,
+  widthL,
+  widthM,
+  widthS,
+  widthXS,
+  maxWidth,
+  height,
+  fixRatio,
+  children,
+}: Props) => {
   return (
-  <Component
-    widthXL={widthXL || '100%'}
-    widthL={widthL}
-    widthM={widthM}
-    widthS={widthS}
-    widthXS={widthXS}
-    maxWidth={maxWidth || '100%'}
-  >
-    {children}
-  </Component>
+    <Component
+      width={width}
+      widthXL={widthXL}
+      widthL={widthL}
+      widthM={widthM}
+      widthS={widthS}
+      widthXS={widthXS}
+      maxWidth={maxWidth}
+      height={height || 'auto'}
+      fixRatio={fixRatio || false}
+    >
+      <div>{children}</div>
+    </Component>
   );
 };
 
 interface ComponentProps {
-  widthXL: string;
+  width?: string;
+  widthXL?: string;
   widthL?: string;
   widthM?: string;
   widthS?: string;
   widthXS?: string;
-  maxWidth: string;
+  maxWidth?: string;
+  height: string;
+  fixRatio: boolean;
 }
 
 const Component = styled.div<ComponentProps>`
-position: relative;
-width: ${props => props.widthXL};
-max-width: ${props => props.maxWidth};
+  position: relative;
+  ${(props) => props.width && `width: ${props.width};`};
+  ${(props) => props.widthXL && `width: ${props.widthXL};`};
+  ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`};
 
-${props => props.widthL && `
+  > div {
+    position: relative;
+    height: ${(props) => props.height};
+  }
+
+  ${(props) =>
+    props.fixRatio &&
+    `
+  &:before {
+    position: relative;
+    display: block;
+    content: '';
+    padding-top: ${props.height};
+  }
+
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`}
+
+  ${(props) =>
+    props.widthL &&
+    `
   @media only screen and (max-width: ${screen.l}px) {
     width: ${props.widthL};
   }
 `}
 
-${props => props.widthM && `
+${(props) =>
+    props.widthM &&
+    `
   @media only screen and (max-width: ${screen.m}px) {
     width: ${props.widthM};
   }
 `}
 
-${props => props.widthS && `
+${(props) =>
+    props.widthS &&
+    `
   @media only screen and (max-width: ${screen.s}px) {
     width: ${props.widthS};
   }
 `}
 
-${props => props.widthXL && `
+${(props) =>
+    props.widthXS &&
+    `
   @media only screen and (max-width: ${screen.xs}px) {
     width: ${props.widthXS};
   }
 `}
-`
+`;
 
 export default Block;

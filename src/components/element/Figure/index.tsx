@@ -4,13 +4,15 @@ import { screen } from 'lib/config';
 
 export interface Props {
   name: string;
-  src: string;
+  src: any;
   srcSet?: string;
+  width?: string;
   widthXL?: string;
   widthL?: string;
   widthM?: string;
   widthS?: string;
   widthXS?: string;
+  height?: string;
   heightXL?: string;
   heightL?: string;
   heightM?: string;
@@ -18,32 +20,52 @@ export interface Props {
   heightXS?: string;
 }
 
-const Figure = ({name, src, srcSet, widthXL, widthL, widthM, widthS, widthXS, heightXL, heightL, heightM, heightS, heightXS}: Props) => {
+const Figure = ({
+  name,
+  src,
+  srcSet,
+  width,
+  widthXL,
+  widthL,
+  widthM,
+  widthS,
+  widthXS,
+  height,
+  heightXL,
+  heightL,
+  heightM,
+  heightS,
+  heightXS,
+}: Props) => {
   return (
-  <Component
-    widthXL={widthXL || '100%'}
-    widthL={widthL}
-    widthM={widthM}
-    widthS={widthS}
-    widthXS={widthXS}
-    heightXL={heightXL || '100%'}
-    heightL={heightL}
-    heightM={heightM}
-    heightS={heightS}
-    heightXS={heightXS}
-  >
-    <img src={src} srcSet={srcSet || src} alt={name} />
-  </Component>
+    <Component
+      width={width || 'auto'}
+      widthXL={widthXL}
+      widthL={widthL}
+      widthM={widthM}
+      widthS={widthS}
+      widthXS={widthXS}
+      height={height || 'auto'}
+      heightXL={heightXL}
+      heightL={heightL}
+      heightM={heightM}
+      heightS={heightS}
+      heightXS={heightXS}
+    >
+      <img src={src} srcSet={srcSet || src} alt={name} />
+    </Component>
   );
 };
 
 interface ComponentProps {
-  widthXL: string;
+  width: string;
+  widthXL?: string;
   widthL?: string;
   widthM?: string;
   widthS?: string;
   widthXS?: string;
-  heightXL: string;
+  height: string;
+  heightXL?: string;
   heightL?: string;
   heightM?: string;
   heightS?: string;
@@ -52,56 +74,39 @@ interface ComponentProps {
 
 const Component = styled.figure<ComponentProps>`
   position: relative;
-  width: ${props => props.widthXL};
-  margin: 0 auto;
-
-&:before {
-  position: relative;
-  content: '';
-  display: block;
-  padding-top: ${props => props.heightXL};
-}
+  width: ${(props) => props.width};
+  ${(props) => props.widthXL && `width: ${props.widthXL};`};
+  height: ${(props) => props.height};
+  ${(props) => props.heightXL && `width: ${props.heightXL};`};
 
   img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    vertical-align: middle;
   }
 
-@media only screen and (max-width: ${screen.l}px) {
-  width: ${props => props.widthL || props.widthXL};
+  @media only screen and (max-width: ${screen.l}px) {
+    ${(props) => props.widthL && `width: ${props.widthL};`};
+    ${(props) => props.heightL && `width: ${props.heightL};`};
+  }
 
-&:before {
-  padding-top: ${props => props.heightL || props.heightXL};
-}
-}
+  @media only screen and (max-width: ${screen.m}px) {
+    ${(props) => props.widthM && `width: ${props.widthM};`};
+    ${(props) => props.heightM && `width: ${props.heightM};`};
+  }
 
-@media only screen and (max-width: ${screen.m}px) {
-  width: ${props => props.widthM || props.widthXL};
+  @media only screen and (max-width: ${screen.s}px) {
+    ${(props) => props.widthS && `width: ${props.widthS};`};
+    ${(props) => props.heightS && `width: ${props.heightS};`};
+  }
 
-&:before {
-  padding-top: ${props => props.heightM || props.heightXL};
-}
-}
-
-@media only screen and (max-width: ${screen.s}px) {
-  width: ${props => props.widthS || props.widthXL};
-
-&:before {
-  padding-top: ${props => props.heightS || props.heightXL};
-}
-}
-
-@media only screen and (max-width: ${screen.xs}px) {
-  width: ${props => props.widthXS || props.widthXL};
-
-&:before {
-  padding-top: ${props => props.heightXS || props.heightXL};
-}
-}
+  @media only screen and (max-width: ${screen.xs}px) {
+    ${(props) => props.widthXS && `width: ${props.widthXS};`};
+    ${(props) => props.heightXS && `width: ${props.heightXS};`};
+  }
 `;
 
 export default Figure;

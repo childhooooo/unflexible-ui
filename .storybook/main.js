@@ -6,12 +6,12 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-knobs',
     '@storybook/addon-links',
-    '@storybook/addon-viewport'
+    '@storybook/addon-viewport',
   ],
   typescript: {
     check: false,
     checkOptions: {},
-    reactDocgen: 'react-docgen-typescript'
+    reactDocgen: 'react-docgen-typescript',
   },
   webpackFinal: async (config) => {
     config.resolve.plugins.push(new TsconfigPathsPlugin({}));
