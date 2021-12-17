@@ -98,12 +98,12 @@ npm install unflexible-ui
   --plain-h3-align: left;
   --plain-h4-align: left;
   --plain-h5-align: left;
-  --plain-base-color: ${color.black};
-  --plain-h1-color: ${color.black};
-  --plain-h2-color: ${color.black};
-  --plain-h3-color: ${color.black};
-  --plain-h4-color: ${color.black};
-  --plain-h5-color: ${color.black};
+  --plain-base-color: #000000;
+  --plain-h1-color: #000000;
+  --plain-h2-color: #000000;
+  --plain-h3-color: #000000;
+  --plain-h4-color: #000000;
+  --plain-h5-color: #000000;
   --plain-base-line-height: 1.5;
   --plain-h1-line-height: 1.5;
   --plain-h2-line-height: 1.5;
