@@ -10,7 +10,7 @@ const defaultSizes = {
   xs: '94%',
 };
 
-interface Props {
+export interface Props {
   children?: React.ReactNode;
 }
 

@@ -6,7 +6,7 @@ import postcss from 'rollup-plugin-postcss';
 
 import packageJson from './package.json';
 
-export default {
+const config = {
   input: 'src/index.ts',
   output: [
     {
@@ -20,11 +20,7 @@ export default {
       sourcemap: true,
     },
   ],
-  plugins: [
-    peerDepsExternal(),
-    resolve(),
-    commonjs(),
-    typescript(),
-    postcss()
-  ],
+  plugins: [peerDepsExternal(), resolve(), commonjs(), typescript(), postcss()],
 };
+
+export default config;
