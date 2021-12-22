@@ -68,7 +68,7 @@ const Columns = ({
       wrapL={wrapL || wrapXL || true}
       wrapM={wrapM || wrapL || wrapXL || true}
       wrapS={wrapS || wrapM || wrapL || wrapXL || true}
-      wrapXS={wrapXS || true}
+      wrapXS={wrapXS || wrapS || wrapM || wrapL || wrapXL || true}
     >
       {children}
     </Component>
