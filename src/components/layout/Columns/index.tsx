@@ -28,11 +28,11 @@ export interface Props {
   repeatM?: number;
   repeatS?: number;
   repeatXS?: number;
-  wrapXL?: boolean;
-  wrapL?: boolean;
-  wrapM?: boolean;
-  wrapS?: boolean;
-  wrapXS?: boolean;
+  wrapXL?: string;
+  wrapL?: string;
+  wrapM?: string;
+  wrapS?: string;
+  wrapXS?: string;
   children?: React.ReactNode;
 }
 
@@ -64,11 +64,11 @@ const Columns = ({
       repeatM={repeatM}
       repeatS={repeatS}
       repeatXS={repeatXS}
-      wrapXL={wrapXL || true}
-      wrapL={wrapL || wrapXL || true}
-      wrapM={wrapM || wrapL || wrapXL || true}
-      wrapS={wrapS || wrapM || wrapL || wrapXL || true}
-      wrapXS={wrapXS || wrapS || wrapM || wrapL || wrapXL || true}
+      wrapXL={wrapXL || 'wrap'}
+      wrapL={wrapL || wrapXL || 'wrap'}
+      wrapM={wrapM || wrapL || wrapXL || 'wrap'}
+      wrapS={wrapS || wrapM || wrapL || wrapXL || 'wrap'}
+      wrapXS={wrapXS || wrapS || wrapM || wrapL || wrapXL || 'wrap'}
     >
       {children}
     </Component>
@@ -85,16 +85,16 @@ interface ComponentProps {
   repeatM?: number;
   repeatS?: number;
   repeatXS?: number;
-  wrapXL: boolean;
-  wrapL: boolean;
-  wrapM: boolean;
-  wrapS: boolean;
-  wrapXS: boolean;
+  wrapXL: string;
+  wrapL: string;
+  wrapM: string;
+  wrapS: string;
+  wrapXS: string;
 }
 
 const Component = styled.div<ComponentProps>`
   display: flex;
-  flex-wrap: ${props => props.wrapXL ? 'wrap' : 'nowrap'};
+  flex-wrap: ${props => props.wrapXL};
   align-items: ${(props) => props.align};
   justify-content: ${(props) => props.justify};
   gap: ${(props) =>
@@ -121,7 +121,7 @@ const Component = styled.div<ComponentProps>`
   `}
 
   @media only screen and (max-width: ${screen.l}px) {
-    flex-wrap: ${props => props.wrapL ? 'wrap' : 'nowrap'};
+    flex-wrap: ${props => props.wrapL};
     gap: ${(props) =>
       `calc(var(--columns-gap-${props.gap}, ${
         defaultGaps[props.gap]
@@ -138,7 +138,7 @@ const Component = styled.div<ComponentProps>`
   }
 
   @media only screen and (max-width: ${screen.m}px) {
-    flex-wrap: ${props => props.wrapM ? 'wrap' : 'nowrap'};
+    flex-wrap: ${props => props.wrapM};
     gap: ${(props) =>
       `calc(var(--columns-gap-${props.gap}, ${
         defaultGaps[props.gap]
@@ -155,7 +155,7 @@ const Component = styled.div<ComponentProps>`
   }
 
   @media only screen and (max-width: ${screen.s}px) {
-    flex-wrap: ${props => props.wrapS ? 'wrap' : 'nowrap'};
+    flex-wrap: ${props => props.wrapS};
     gap: ${(props) =>
       `calc(var(--columns-gap-${props.gap}, ${
         defaultGaps[props.gap]
@@ -172,7 +172,7 @@ const Component = styled.div<ComponentProps>`
   }
 
   @media only screen and (max-width: ${screen.xs}px) {
-    flex-wrap: ${props => props.wrapXS ? 'wrap' : 'nowrap'};
+    flex-wrap: ${props => props.wrapXS};
     gap: ${(props) =>
       `calc(var(--columns-gap-${props.gap}, ${
         defaultGaps[props.gap]
