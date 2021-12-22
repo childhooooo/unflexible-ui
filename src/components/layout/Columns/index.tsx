@@ -28,6 +28,7 @@ export interface Props {
   repeatM?: number;
   repeatS?: number;
   repeatXS?: number;
+  nowrap?: boolean;
   children?: React.ReactNode;
 }
 
@@ -41,6 +42,7 @@ const Columns = ({
   repeatM,
   repeatS,
   repeatXS,
+  nowrap,
   children,
 }: Props) => {
   return (
@@ -54,6 +56,7 @@ const Columns = ({
       repeatM={repeatM}
       repeatS={repeatS}
       repeatXS={repeatXS}
+      nowrap={nowrap || false}
     >
       {children}
     </Component>
@@ -70,11 +73,12 @@ interface ComponentProps {
   repeatM?: number;
   repeatS?: number;
   repeatXS?: number;
+  nowrap: boolean;
 }
 
 const Component = styled.div<ComponentProps>`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: ${props => props.nowrap ? 'nowrap' : 'wrap'};
   align-items: ${(props) => props.align};
   justify-content: ${(props) => props.justify};
   gap: ${(props) =>

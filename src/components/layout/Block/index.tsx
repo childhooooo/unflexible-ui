@@ -12,6 +12,8 @@ export interface Props {
   maxWidth?: string;
   height?: string;
   fixRatio?: boolean;
+  shrink?: number;
+  grow?: number;
   children?: React.ReactNode;
 }
 
@@ -25,6 +27,8 @@ const Block = ({
   maxWidth,
   height,
   fixRatio,
+  shrink,
+  grow,
   children,
 }: Props) => {
   return (
@@ -38,6 +42,8 @@ const Block = ({
       maxWidth={maxWidth}
       height={height || 'auto'}
       fixRatio={fixRatio || false}
+      shrink={shrink || 0}
+      grow={grow || 0}
     >
       <div>{children}</div>
     </Component>
@@ -54,6 +60,8 @@ interface ComponentProps {
   maxWidth?: string;
   height: string;
   fixRatio: boolean;
+  shrink: number;
+  grow: number;
 }
 
 const Component = styled.div<ComponentProps>`
@@ -61,6 +69,8 @@ const Component = styled.div<ComponentProps>`
   ${(props) => props.width && `width: ${props.width};`};
   ${(props) => props.widthXL && `width: ${props.widthXL};`};
   ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`};
+  flex-shrink: ${props => props.shrink};
+  flex-grow: ${props => props.grow};
 
   > div {
     position: relative;
