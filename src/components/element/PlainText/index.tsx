@@ -448,89 +448,89 @@ const Component = styled.div<ComponentProps>`
 
   @media only screen and (max-width: ${screen.l}px) {
     h1 {
-      font-size: ${(props) => props.h1SizeL || 'var(--plain-h1-size-l)'};
+      font-size: ${(props) => props.h1SizeL || props.h1SizeXL || 'var(--plain-h1-size-l)'};
     }
 
     h2 {
-      font-size: ${(props) => props.h2SizeL || 'var(--plain-h2-size-l)'};
+      font-size: ${(props) => props.h2SizeL || props.h2SizeXL || 'var(--plain-h2-size-l)'};
     }
 
     h3 {
-      font-size: ${(props) => props.h3SizeL || 'var(--plain-h3-size-l)'};
+      font-size: ${(props) => props.h3SizeL || props.h3SizeXL || 'var(--plain-h3-size-l)'};
     }
 
     h4 {
-      font-size: ${(props) => props.h4SizeL || 'var(--plain-h4-size-l)'};
+      font-size: ${(props) => props.h4SizeL || props.h4SizeXL || 'var(--plain-h4-size-l)'};
     }
 
     h5 {
-      font-size: ${(props) => props.h5SizeL || 'var(--plain-h5-size-l)'};
+      font-size: ${(props) => props.h5SizeL || props.h5SizeXL || 'var(--plain-h5-size-l)'};
     }
   }
 
   @media only screen and (max-width: ${screen.m}px) {
     h1 {
-      font-size: ${(props) => props.h1SizeM || 'var(--plain-h1-size-m)'};
+      font-size: ${(props) => props.h1SizeM || props.h1SizeL || props.h1SizeXL || 'var(--plain-h1-size-m)'};
     }
 
     h2 {
-      font-size: ${(props) => props.h2SizeM || 'var(--plain-h2-size-m)'};
+      font-size: ${(props) => props.h2SizeM || props.h2SizeL || props.h2SizeXL || 'var(--plain-h2-size-m)'};
     }
 
     h3 {
-      font-size: ${(props) => props.h3SizeM || 'var(--plain-h3-size-m)'};
+      font-size: ${(props) => props.h3SizeM || props.h3SizeL || props.h3SizeXL || 'var(--plain-h3-size-m)'};
     }
 
     h4 {
-      font-size: ${(props) => props.h4SizeM || 'var(--plain-h4-size-m)'};
+      font-size: ${(props) => props.h4SizeM || props.h4SizeL || props.h4SizeXL || 'var(--plain-h4-size-m)'};
     }
 
     h5 {
-      font-size: ${(props) => props.h5SizeM || 'var(--plain-h5-size-m)'};
+      font-size: ${(props) => props.h5SizeM || props.h5SizeL || props.h5SizeXL || 'var(--plain-h5-size-m)'};
     }
   }
 
   @media only screen and (max-width: ${screen.s}px) {
     h1 {
-      font-size: ${(props) => props.h1SizeS || 'var(--plain-h1-size-s)'};
+      font-size: ${(props) => props.h1SizeS || props.h1SizeM || props.h1SizeL || props.h1SizeXL || 'var(--plain-h1-size-s)'};
     }
 
     h2 {
-      font-size: ${(props) => props.h2SizeS || 'var(--plain-h2-size-s)'};
+      font-size: ${(props) => props.h2SizeS || props.h2SizeM || props.h2SizeL || props.h2SizeXL || 'var(--plain-h2-size-s)'};
     }
 
     h3 {
-      font-size: ${(props) => props.h3SizeS || 'var(--plain-h3-size-s)'};
+      font-size: ${(props) => props.h3SizeS || props.h3SizeM || props.h3SizeL || props.h3SizeXL || 'var(--plain-h3-size-s)'};
     }
 
     h4 {
-      font-size: ${(props) => props.h4SizeS || 'var(--plain-h4-size-s)'};
+      font-size: ${(props) => props.h4SizeS || props.h4SizeM || props.h4SizeL || props.h4SizeXL || 'var(--plain-h4-size-s)'};
     }
 
     h5 {
-      font-size: ${(props) => props.h5SizeS || 'var(--plain-h5-size-s)'};
+      font-size: ${(props) => props.h5SizeS || props.h5SizeM || props.h5SizeL || props.h5SizeXL || 'var(--plain-h5-size-s)'};
     }
   }
 
   @media only screen and (max-width: ${screen.xs}px) {
     h1 {
-      font-size: ${(props) => props.h1SizeXS || 'var(--plain-h1-size-xs)'};
+      font-size: ${(props) => props.h1SizeXS || props.h1SizeS || props.h1SizeM || props.h1SizeL || props.h1SizeXL || 'var(--plain-h1-size-xs)'};
     }
 
     h2 {
-      font-size: ${(props) => props.h2SizeXS || 'var(--plain-h2-size-xs)'};
+      font-size: ${(props) => props.h2SizeXS || props.h2SizeS || props.h2SizeM || props.h2SizeL || props.h2SizeXL || 'var(--plain-h2-size-xs)'};
     }
 
     h3 {
-      font-size: ${(props) => props.h3SizeXS || 'var(--plain-h3-size-xs)'};
+      font-size: ${(props) => props.h3SizeXS || props.h3SizeS || props.h3SizeM || props.h3SizeL || props.h3SizeXL || 'var(--plain-h3-size-xs)'};
     }
 
     h4 {
-      font-size: ${(props) => props.h4SizeXS || 'var(--plain-h4-size-xs)'};
+      font-size: ${(props) => props.h4SizeXS || props.h4SizeS || props.h4SizeM || props.h4SizeL || props.h4SizeXL || 'var(--plain-h4-size-xs)'};
     }
 
     h5 {
-      font-size: ${(props) => props.h5SizeXS || 'var(--plain-h5-size-xs)'};
+      font-size: ${(props) => props.h5SizeXS || props.h5SizeS || props.h5SizeM || props.h5SizeL || props.h5SizeXL || 'var(--plain-h5-size-xs)'};
     }
   }
 `;
