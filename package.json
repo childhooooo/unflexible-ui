@@ -1,5 +1,5 @@
 {
-  "name": "@childhooooo/unflexible-ui",
+  "name": "unflexible-ui",
   "version": "0.2.1",
   "description": "Don't be flexible.",
   "main": "build/index.js",
