@@ -18,7 +18,7 @@ export interface Props {
   heightM?: string;
   heightS?: string;
   heightXS?: string;
-  loading?: string;
+  lazy?: boolean;
 }
 
 const Figure = ({
@@ -37,7 +37,7 @@ const Figure = ({
   heightM,
   heightS,
   heightXS,
-  loading
+  lazy
 }: Props) => {
   return (
     <Component
@@ -54,7 +54,7 @@ const Figure = ({
       heightS={heightS}
       heightXS={heightXS}
     >
-      <img src={src} srcSet={srcSet || src} alt={name} loading={loading || 'auto'} />
+      <img src={src} srcSet={srcSet || src} alt={name} loading={lazy ? 'lazy' : 'eager'} />
     </Component>
   );
 };
