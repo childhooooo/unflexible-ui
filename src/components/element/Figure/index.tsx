@@ -18,6 +18,7 @@ export interface Props {
   heightM?: string;
   heightS?: string;
   heightXS?: string;
+  loading?: string;
 }
 
 const Figure = ({
@@ -36,6 +37,7 @@ const Figure = ({
   heightM,
   heightS,
   heightXS,
+  loading
 }: Props) => {
   return (
     <Component
@@ -52,7 +54,7 @@ const Figure = ({
       heightS={heightS}
       heightXS={heightXS}
     >
-      <img src={src} srcSet={srcSet || src} alt={name} />
+      <img src={src} srcSet={srcSet || src} alt={name} loading={loading || 'auto'} />
     </Component>
   );
 };
