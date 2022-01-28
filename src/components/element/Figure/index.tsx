@@ -77,7 +77,7 @@ const Component = styled.figure<ComponentProps>`
   width: ${(props) => props.width};
   ${(props) => props.widthXL && `width: ${props.widthXL};`};
   height: ${(props) => props.height};
-  ${(props) => props.heightXL && `width: ${props.heightXL};`};
+  ${(props) => props.heightXL && `height: ${props.heightXL};`};
 
   img {
     position: relative;
@@ -90,22 +90,22 @@ const Component = styled.figure<ComponentProps>`
 
   @media only screen and (max-width: ${screen.l}px) {
     ${(props) => props.widthL && `width: ${props.widthL};`};
-    ${(props) => props.heightL && `width: ${props.heightL};`};
+    ${(props) => props.heightL && `height: ${props.heightL};`};
   }
 
   @media only screen and (max-width: ${screen.m}px) {
     ${(props) => props.widthM && `width: ${props.widthM};`};
-    ${(props) => props.heightM && `width: ${props.heightM};`};
+    ${(props) => props.heightM && `height: ${props.heightM};`};
   }
 
   @media only screen and (max-width: ${screen.s}px) {
     ${(props) => props.widthS && `width: ${props.widthS};`};
-    ${(props) => props.heightS && `width: ${props.heightS};`};
+    ${(props) => props.heightS && `height: ${props.heightS};`};
   }
 
   @media only screen and (max-width: ${screen.xs}px) {
     ${(props) => props.widthXS && `width: ${props.widthXS};`};
-    ${(props) => props.heightXS && `width: ${props.heightXS};`};
+    ${(props) => props.heightXS && `height: ${props.heightXS};`};
   }
 `;
 
