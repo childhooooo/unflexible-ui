@@ -7,6 +7,8 @@ module.exports = {
     '@storybook/addon-knobs',
     '@storybook/addon-links',
     '@storybook/addon-viewport',
+    '@storybook/addon-postcss',
+    '@storybook/addon-ie11'
   ],
   typescript: {
     check: false,
