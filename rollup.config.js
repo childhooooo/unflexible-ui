@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
+import { babel } from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import typescript from 'rollup-plugin-typescript2';
@@ -20,7 +21,29 @@ const config = {
       sourcemap: true,
     },
   ],
-  plugins: [peerDepsExternal(), resolve(), commonjs(), typescript(), postcss()],
+  plugins: [
+    peerDepsExternal(),
+    resolve(),
+    commonjs(),
+    babel({
+      exclude: ['node_modules/**']
+    }),
+    typescript(),
+    postcss({
+      plugins: [
+        require('postcss-flexbugs-fixes'),
+        require('postcss-preset-env')({
+          autoprefixer: {
+            flexbox: "no-2009"
+          },
+          stage: 3,
+          features: {
+            'custom-properties': true
+          }
+        })
+      ]
+    })
+  ],
 };
 
 export default config;
